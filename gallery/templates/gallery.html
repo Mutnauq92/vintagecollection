@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+
+        <div class="alert alert-warning alert-dismissible fade show d-flex justify-content-center" role="alert">
+            <strong>You are seeing {{ car_list|length }} images because you are not logged in<span style="color:red;">!!!</span>
+            Please <a href="{% url 'user_auth:login' %}" class="text-success text-decoration-none">Login</a>
+            Or <a href="{% url 'user_auth:register_user' %}" class="text-success text-decoration-none">Register</a>
+            to view full gallery.
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+            
+    {% else %}
+    {% endif %}
+
+    <div class="col-12 d-flex justify-content-evenly p-4">
+        {% if car_list %}
+            {% comment %} apply styles based on length of the list {% endcomment %}
+            {% if car_list|length > 3 %}
+
+                <div class="row">
+                    {% for car in car_list %}
+
+                        <div class="col-4 container d-flex justify-content-evenly p-3">
+
+                            <div class="card d-flex align-items-center" style="width: 25rem;">
+
+                                <div class="zoom">
+                                    <figure class="figure">
+                                        <div>
+                                            <img src="{{ car.car_pic.url }}" class="card-img-top img-fluid zoom-img" alt="{{ car.car_pic.url }}" role="img">
+                                        </div>
+                                    </figure>
+                                </div>
+                              
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ car.production_year.year }} {{ car.model }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ car.engine_size }} {{ car.engine_configuration }}
+                                    </p>
+                                    <p class="card-text">{{ car.horsepower }}</p>
+                                    <p class="card-text">{{ car.torque }}</p>
+                                    <p class="card-text">{{ car.transmission }}</p>
+                                    <a href="{% url 'gallery:detail' car.id %}" class="btn btn-primary">VIEW GALLERY</a>
+
+                                </div><br>
+        
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+                </div>
+            
+            {% else %}
+                <div class="row">
+                    {% for car in car_list %}
+
+                        <div class="col container d-flex justify-content-evenly p-3">
+
+                            <div class="card d-flex align-items-center" style="width: 16rem;">
+                            
+                                <img src="{{ car.car_pic.url }}" class="card-img-top" alt="{{ car.car_pic.url }}" role="img">
+        
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ car.production_year.year }} {{ car.model }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ car.engine_size }} {{ car.engine_configuration }}
+                                    </p>
+                                    <p class="card-text">{{ car.horsepower }}</p>
+                                    <p class="card-text">{{ car.torque }}</p>
+                                    <p class="card-text">{{ car.transmission }}</p>
+                                    <a href="{% url 'gallery:detail' car.id %}" class="btn btn-primary">VIEW GALLERY</a>
+                            
+                                </div><br>
+        
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        {% else %}
+        {% endif %}
+
+    </div>
+
+{% endblock content %}

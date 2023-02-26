@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container-fluid row d-flex justify-content-between p-3 text-center">
+
+        <p class="text-light text-decoration-none fs-3">
+            <span class="text-dark"> {{ car.make }} </span>
+            <span class="text-danger"> {{ car.model }} </span>
+        </p>
+
+        {% if error_message %}
+            <p class="text-danger"><strong>{{ error_message }}</strong></p>
+        {% endif %}
+            
+        {% for choice in car.cargallery_set.all %}
+
+            <div class="col">
+
+                <div class="zoom">
+                    <figure class="figure">
+                        <div>
+                            <img src="{{ choice.car_pics.url }}" class="figure-img img-fluid rounded zoom-img" alt="{{ car.car_pics.url }}">
+                        </div>
+                        <figcaption class="figure-caption">{{ choice.path_name|capfirst }} View</figcaption>
+                    </figure>
+                </div>
+
+            </div>
+            
+        {% endfor %}
+
+        
+        <div class="container">
+            <button class="btn btn-primary btn-sm btn-outline-none">
+                <a href="{% url 'gallery:gallery' %}" class="text-light text-decoration-none">Home</a>
+            </button>
+        </div>
+
+
+    </div>
+
+{% endblock content %}
