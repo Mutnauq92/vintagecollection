@@ -1,0 +1,25 @@
+/* body {
+    background: white url('static/silverrocket/1.jpg') no-repeat;
+} */
+
+.back-img {
+    background: url('static/front_side.webp') no-repeat;
+    background-size: cover;
+}
+
+.zoom > figure > div {
+    margin: 10px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.zoom-img {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transition: transform 1s ease;
+}
+
+.zoom-img:hover{
+    transform: scale(2);
+}

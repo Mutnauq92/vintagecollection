@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% if form.errors %}
+  
+  <div class="alert alert-danger">
+    <p class="fs-4">An error occured, we apologize for the inconvenience</p>
+    <p class="fs-4">Our engineers are working to fix the problem</p>
+  </div>
+
+{% else %}
+{% endif %}
+
+{% block content %}
+
+    <div class="col-12 col-md-4 container-fluid px-2">
+      
+      <form action="/user_auth/register_user/" method="post"  class="form-control my-3 bg-dark text-light">
+        
+        <div class="d-flex justify-content-center">
+          <p>User Registration</p>
+        </div>
+        
+        {% csrf_token %}
+
+        {% comment %} username field {% endcomment %}
+        <div class="row mb-3">
+          <label for="id_username" class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" maxlength="150"
+              autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+          </div>
+        </div>
+
+        {% comment %} password2 / password confirmation field {% endcomment %}
+        <div class="row mb-3">
+          <label for="id_first_name" class="col-sm-2 col-form-label">Firstname</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id_first_name" name="first_name" autocomplete="new-password" required="">
+          </div>
+        </div>
+
+        {% comment %} password1 field {% endcomment %}
+        <div class="row mb-3">
+          <label for="id_password1" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="id_password1" name="password1" autocomplete="new-password" required="">
+          </div>
+        </div>
+        
+        {% comment %} password2 / password confirmation field {% endcomment %}
+        <div class="row mb-3">
+          <label for="id_password2" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="id_password2" name="password2" autocomplete="new-password" required="">
+          </div>
+        </div>
+
+        {% comment %} register / submit button {% endcomment %}
+        <div class="d-flex justify-content-center">
+          <input type="submit" class="btn btn-primary btn-sm justify-content-end" value="Register">
+        </div>
+      </form>
+
+    </div>
+    
+{% endblock content %}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

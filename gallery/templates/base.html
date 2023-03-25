@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>VintageCollection</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% comment %} BOOTSTRAP STYLES {% endcomment %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous">
+
+        {% comment %} BOOTSTRAP ICONS {% endcomment %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+        {% comment %} custom styles {% endcomment %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        
+        {% comment %} BOOTSTRAP SCRIPTS {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous">
+        </script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        {% block header %}
+
+            <div class="container-fluid bg-dark justify-content-end">
+                <nav class="navbar navbar-expand-lg bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand text-light" href="{% url 'gallery:gallery' %}">
+                            <u>Vintage<span style="color: red; font-style: italic;">Collection</span></u>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                {% if not user.is_authenticated %}
+                                
+                                    <a class="nav-link text-light" href="{% url 'user_auth:login' %}">Login</a>
+                                    <a class="nav-link text-light" href="{% url 'user_auth:register_user' %}">Register</a>
+                                    <a class="nav-link text-light" href="{% url 'gallery:about' %}">About</a>
+                                    <a class="nav-link text-light" href="{% url 'gallery:gallery' %}">Gallery</a>
+
+                                {% else %}
+
+                                    <a class="nav-link text-light">Logged in (<span style="color: red;"> {{ user.first_name }} </span>)</a>
+                                    <a class="nav-link text-light" href="{% url 'user_auth:logout' %}">Logout</a>
+                                    <a class="nav-link text-light" href="{% url 'gallery:about' %}">About</a>
+                                    <a class="nav-link text-light" href="{% url 'gallery:gallery' %}">Gallery</a>
+
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+        {% endblock header %}
+
+        {% block content %}
+        
+        {% endblock content %}
+        
+        <script src="" async defer></script>
+    </body>
+</html>
