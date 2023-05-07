@@ -13,7 +13,7 @@ provided about the cars in the gallery
 <img src="gallery/static/back.jpg" width="400">
 <br><br><br>
 
-# Table of contents <span style="opacity: 0.4"> [ Virtualenv-Wrapper ]</span>
+# Table-of-contents <span style="opacity: 0.4"> [ Virtualenv-Wrapper ]</span>
 
 <!-- Ordered list  -->  
 1. [Table of Contents](#dockerizing)
